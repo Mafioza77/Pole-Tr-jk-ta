@@ -7,23 +7,21 @@
     </head>
 <body>
     <script>
-        var a=prompt("Podaj wartość a",a);
-        var b=prompt("Podaj wartość b",b);
-        var c=prompt("Podaj wartość c",c);
-        p=(a+b-c)/2
-        if (p-a < 0 || p-b < 0 || p-c < 0)
-        {
-        document.write("Trójkąt o podanych bokach a,b,c nie istnieje")
+        var a = parseFloat(prompt("Podaj wartość a", "0"));
+        var b = parseFloat(prompt("Podaj wartość b", "0"));
+        var c = parseFloat(prompt("Podaj wartość c", "0"));
+
+    // Sprawdzenie czy trójkąt istnieje
+        if (a + b > c && a + c > b && b + c > a) { 
+    // Obliczenie pola trójkąta
+            var p = (a + b + c) / 2;
+            var s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+    // Wyświetlanie wyniku
+            document.write("Pole trójkąta wynosi: " + s);
+    // Obsługa przypadku, gdy trójkąt nie istnieje
+        } else {
+            document.write("Trójkąt o podanych bokach a, b, c nie istnieje");
         }
-        if (p+a > 0 || p+b > 0 || p+c > 0)
-        {
-        s= Math.sqrt(p*(p-a)*(p-b)*(p-c))
-        document.write(s);
-        }
-        </script>
-</div>
-
-
-
+    </script>
 </body>
 </html>
