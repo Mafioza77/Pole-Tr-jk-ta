@@ -6,6 +6,34 @@
         <link rel="stylesheet" type="text/css" href="trojkat.css">
     </head>
 <body>
+<h2>Kalkulator pola trójkąta</h2>
+<input type="number" id="a" placeholder="Bok a">
+<input type="number" id="b" placeholder="Bok b">
+<input type="number" id="c" placeholder="Bok c">
+<br>
+<button onclick="obliczPole()">Oblicz pole</button>
+<div class="result" id="wynik"></div>
+
+<script>
+function obliczPole() {   
+    // Pobiera wartość wprowadzoną przez użytkownika w polu a i konwertuje ją na liczbę zmiennoprzecinkową
+    var a = parseFloat(document.getElementById('a').value);
+    var b = parseFloat(document.getElementById('b').value);
+    var c = parseFloat(document.getElementById('c').value);
+ 
+    if (a && b && c && a + b > c && a + c > b && b + c > a) {
+        var s = (a + b + c) / 2;
+        var pole = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        document.getElementById('wynik').textContent = "Pole: " + pole.toFixed(2);//Zaokrągla wynik do dwóch miejsc po przecinku.
+    } else {
+        document.getElementById('wynik').textContent = "Niepoprawne dane.";
+    }
+}
+</script>
+
+
+
+</body>
     <script>
         var a = parseFloat(prompt("Podaj wartość a", "0"));
         var b = parseFloat(prompt("Podaj wartość b", "0"));
