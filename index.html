@@ -1,40 +1,92 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Obliczanie Pola trójkąta</title>
-        <link rel="stylesheet" type="text/css" href="trojkat.css">
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obliczanie pól</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Obliczanie pól</h1>
 
-<h2>Kalkulator pola trójkąta</h2>
-<input type="number" id="a" placeholder="Bok a">
-<input type="number" id="b" placeholder="Bok b">
-<input type="number" id="c" placeholder="Bok c">
-<br>
-<button onclick="obliczPole()">Oblicz pole</button>
-<div class="result" id="wynik"></div>
+        <div class="form-group">
+            <h2>Pole trójkąta</h2>
+            <label for="triangle-base">Podstawy trójkąta:</label>
+            <input type="number" id="triangle-base" placeholder="Podaj podstawę" required>
+            <label for="triangle-height">Wysokości trójkąta:</label>
+            <input type="number" id="triangle-height" placeholder="Podaj wysokość" required>
+            <button onclick="calculateTriangleArea()">Oblicz pole trójkąta</button>
+            <div id="triangle-result" class="result"></div>
+        </div>
 
-<script>
-function obliczPole() {   
-    // Pobiera wartość wprowadzoną przez użytkownika w polu a i konwertuje ją na liczbę zmiennoprzecinkową
-    var a = parseFloat(document.getElementById('a').value);
-    var b = parseFloat(document.getElementById('b').value);
-    var c = parseFloat(document.getElementById('c').value);
+        <div class="form-group">
+            <h2>Pole prostokąta</h2>
+            <label for="rectangle-length">Długości prostokąta:</label>
+            <input type="number" id="rectangle-length" placeholder="Podaj długość" required>
+            <label for="rectangle-width">Szerokości prostokąta:</label>
+            <input type="number" id="rectangle-width" placeholder="Podaj szerokość" required>
+            <button onclick="calculateRectangleArea()">Oblicz pole prostokąta</button>
+            <div id="rectangle-result" class="result"></div>
+        </div>
+    </div>
 
-    // Sprawdzenie czy trójkąt istnieje
-    if (a && b && c && a + b > c && a + c > b && b + c > a) {
-    // Obliczenie pola trójkąta
-        var s = (a + b + c) / 2;
-        var pole = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-    // Wyświetlanie wyniku
-        document.getElementById('wynik').textContent = "Pole: " + pole.toFixed(2);//Zaokrągla wynik do dwóch miejsc po przecinku.
-    // Obsługa przypadku, gdy trójkąt nie istnieje
-    } else {
-        document.getElementById('wynik').textContent = "Niepoprawne dane.";
-    }
-}
-</script>
+    <script>
+        function calculateTriangleArea() {
+            const base = parseFloat(document.getElementById('triangle-base').value);
+            const height = parseFloat(document.getElementById('triangle-height').value);
+            if (isNaN(base) || isNaN(height) || base <= 0 || height <= 0) {
+                document.getElementById('triangle-result').innerText = 'Wprowadź poprawne wartości.';
+                return;
+            }
+            const area = 0.5 * base * height;
+            document.getElementById('triangle-result').innerText = `Pole trójkąta wynosi: ${area} jednostek kwadratowych.`;
+        }
 
+        function calculateRectangleArea() {
+            const length = parseFloat(document.getElementById('rectangle-length').value);
+            const width = parseFloat(document.getElementById('rectangle-width').value);
+            if (isNaN(length) || isNaN(width) || length <= 0 || width <= 0) {
+                document.getElementById('rectangle-result').innerText = 'Wprowadź poprawne wartości.';
+                return;
+            }
+            const area = length * width;
+            document.getElementById('rectangle-result').innerText = `Pole prostokąta wynosi: ${area} jednostek kwadratowych.`;
+        }
+    </script>
 </body>
 </html>
