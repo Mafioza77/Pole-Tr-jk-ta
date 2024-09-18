@@ -1,94 +1,114 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8"> <!-- Ustawienie kodowania znaków na UTF-8, co pozwala na wyświetlanie polskich znaków -->
+    <meta charset="UTF-8"> <!-- Ustawienie kodowania znaków na UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Umożliwienie prawidłowego skalowania strony na urządzeniach mobilnych -->
     <title>Kalkulator pola</title> <!-- Tytuł strony, który pojawia się w zakładce przeglądarki -->
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Ustawienie czcionki dla strony */
-            background-color: #f4f4f9; /* Kolor tła strony */
-            display: flex; /* Ustawienie trybu flexbox do centrowania zawartości */
-            justify-content: center; /* Centrowanie zawartości w poziomie */
-            align-items: center; /* Centrowanie zawartości w pionie */
-            height: 100vh; /* Wysokość na 100% widocznego ekranu */
-            margin: 0; /* Usunięcie domyślnego marginesu */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Ustawienie czcionki */
+            background-color: #f4f4f9; /* Kolor tła */
+            display: flex; /* Użycie flexboxa do centrowania */
+            justify-content: center; /* Wyśrodkowanie kontenera w poziomie */
+            align-items: center; /* Wyśrodkowanie kontenera w pionie */
+            height: 100vh; /* Wysokość na 100% widoku okna */
+            margin: 0; /* Usunięcie marginesów */
         }
+
         .container {
-            background-color: white; /* Tło białe dla głównego kontenera */
-            padding: 20px; /* Wewnętrzne odstępy w kontenerze */
-            border-radius: 10px; /* Zaokrąglenie rogów kontenera */
+            background-color: white; /* Tło kontenera */
+            padding: 20px; /* Odstęp wewnętrzny */
+            border-radius: 10px; /* Zaokrąglone rogi */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Cień pod kontenerem */
-            max-width: 400px; /* Maksymalna szerokość kontenera */
+            max-width: 400px; /* Maksymalna szerokość */
             width: 100%; /* Szerokość kontenera na 100% */
+            text-align: center; /* Wyśrodkowanie zawartości tekstowej */
         }
+
         h2 {
-            text-align: center; /* Wyśrodkowanie tekstu nagłówka */
             color: #333; /* Kolor tekstu nagłówka */
+            margin-bottom: 20px; /* Odstęp poniżej nagłówka */
         }
+
         input {
-            width: 100%; /* Szerokość pola input na 100% */
-            padding: 10px; /* Wewnętrzny margines w polu input */
-            margin: 10px 0; /* Zewnętrzny margines nad i pod polem input */
-            border: 1px solid #ccc; /* Obramowanie pola input */
-            border-radius: 5px; /* Zaokrąglenie rogów pola input */
-            font-size: 16px; /* Rozmiar tekstu w polu input */
+            width: 100%; /* Szerokość inputu na 100% */
+            padding: 10px; /* Wewnętrzny margines */
+            margin: 10px 0; /* Odstępy między inputami */
+            border: 1px solid #ccc; /* Obramowanie */
+            border-radius: 5px; /* Zaokrąglone rogi */
+            font-size: 16px; /* Rozmiar czcionki */
         }
+
         button {
-            width: 100%; /* Szerokość przycisku na 100% */
-            padding: 10px; /* Wewnętrzny margines w przycisku */
-            background-color: #28a745; /* Zielone tło przycisku */
-            color: white; /* Kolor tekstu w przycisku */
-            border: none; /* Usunięcie obramowania przycisku */
-            border-radius: 5px; /* Zaokrąglenie rogów przycisku */
-            cursor: pointer; /* Zmiana kursora na wskaźnik (ręka) przy najechaniu na przycisk */
-            font-size: 16px; /* Rozmiar tekstu przycisku */
-            margin-top: 10px; /* Margines górny dla przycisku */
+            width: 100%; /* Szerokość przycisku */
+            padding: 10px; /* Wewnętrzny margines */
+            background-color: #28a745; /* Kolor tła przycisku */
+            color: white; /* Kolor tekstu */
+            border: none; /* Brak obramowania */
+            border-radius: 5px; /* Zaokrąglone rogi */
+            cursor: pointer; /* Zmiana kursora */
+            font-size: 16px; /* Rozmiar tekstu */
+            margin-top: 10px; /* Margines górny */
         }
+
         button:hover {
-            background-color: #218838; /* Zmiana koloru tła przycisku podczas najechania */
+            background-color: #218838; /* Kolor tła przy najechaniu */
         }
+
         .result {
-            text-align: center; /* Wyśrodkowanie tekstu wyników */
-            margin-top: 20px; /* Margines górny dla sekcji wyników */
-            font-size: 18px; /* Rozmiar tekstu wyników */
-            color: #555; /* Kolor tekstu wyników */
+            text-align: center; /* Wyśrodkowanie tekstu */
+            margin-top: 20px; /* Odstęp górny */
+            font-size: 18px; /* Rozmiar tekstu */
+            color: #555; /* Kolor tekstu */
+        }
+
+        img {
+            display: block; /* Wyświetlanie obrazu jako blok */
+            margin: 10px auto; /* Wyśrodkowanie obrazów */
+            max-width: 100px; /* Maksymalna szerokość obrazów */
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Pole trójkąta (Heron)</h2> <!-- Nagłówek sekcji dla pola trójkąta -->
-    <input type="number" id="a" placeholder="Bok a"> <!-- Pole input dla boku "a" trójkąta -->
-    <input type="number" id="b" placeholder="Bok b"> <!-- Pole input dla boku "b" trójkąta -->
-    <input type="number" id="c" placeholder="Bok c"> <!-- Pole input dla boku "c" trójkąta -->
-    <button onclick="calculateTriangle()">Oblicz pole trójkąta</button> <!-- Przycisk wywołujący funkcję obliczającą pole trójkąta -->
+    <h2>Pole trójkąta (Heron)</h2> <!-- Nagłówek dla pola trójkąta -->
+    <input type="number" id="a" placeholder="Bok a"> <!-- Pole input dla boku a -->
+    <input type="number" id="b" placeholder="Bok b"> <!-- Pole input dla boku b -->
+    <input type="number" id="c" placeholder="Bok c"> <!-- Pole input dla boku c -->
+    <button onclick="calculateTriangle()">Oblicz pole trójkąta</button> <!-- Przycisk obliczający pole trójkąta -->
 
-    <img src="tr.png"> <!-- Obrazek (domyślnie obraz trójkąta) -->
+    <img src="tr.png" alt="Obraz trójkąta"> <!-- Obrazek trójkąta -->
 
-    <h2>Pole kwadratu</h2> <!-- Nagłówek sekcji dla pola kwadratu -->
+    <h2>Pole kwadratu</h2> <!-- Nagłówek dla pola kwadratu -->
     <input type="number" id="side" placeholder="Bok kwadratu"> <!-- Pole input dla boku kwadratu -->
-    <button onclick="calculateSquare()">Oblicz pole kwadratu</button> <!-- Przycisk wywołujący funkcję obliczającą pole kwadratu -->
+    <button onclick="calculateSquare()">Oblicz pole kwadratu</button> <!-- Przycisk obliczający pole kwadratu -->
 
-    <img src="pr.png"> <!-- Obrazek (domyślnie obraz kwadratu) -->
+    <img src="pr.png" alt="Obraz kwadratu"> <!-- Obrazek kwadratu -->
 
     <div class="result">
-        <p id="triangle-result"></p> <!-- Paragraf na wynik obliczeń pola trójkąta -->
-        <p id="square-result"></p> <!-- Paragraf na wynik obliczeń pola kwadratu -->
+        <p id="triangle-result"></p> <!-- Wynik dla pola trójkąta -->
+        <p id="square-result"></p> <!-- Wynik dla pola kwadratu -->
     </div>
 </div>
 
 <script>
     function calculateTriangle() {
-        const a = +document.getElementById('a').value; // Pobranie wartości z pola input dla boku "a" i konwersja na liczbę
-        const b = +document.getElementById('b').value; // Pobranie wartości z pola input dla boku "b" i konwersja na liczbę
-        const c = +document.getElementById('c').value; // Pobranie wartości z pola input dla boku "c" i konwersja na liczbę
-        const s = (a + b + c) / 2; // Obliczenie połowy obwodu trójkąta (wzór Herona)
-        const area = Math.sqrt(s * (s - a) * (s - b) * (s - c)); // Obliczenie pola trójkąta przy użyciu wzoru Herona
+        const a = +document.getElementById('a').value; // Pobranie wartości boku a
+        const b = +document.getElementById('b').value; // Pobranie wartości boku b
+        const c = +document.getElementById('c').value; // Pobranie wartości boku c
+        const s = (a + b + c) / 2; // Obliczenie połowy obwodu trójkąta
+        const area = Math.sqrt(s * (s - a) * (s - b) * (s - c)); // Obliczenie pola za pomocą wzoru Herona
         document.getElementById('triangle-result').textContent = isNaN(area) || area <= 0 ? "Błędne dane" : `Pole trójkąta: ${area.toFixed(2)}`; 
-        // Wyświetlenie wyniku lub komunikatu o błędzie w przypadku nieprawidłowych danych
+        // Wyświetlenie wyniku lub komunikat o błędzie
     }
 
     function calculateSquare() {
-        const side = +document.getElementById('side').value; // Pobranie wartości z pola input dla boku kwadratu i konwersja na liczbę
+        const side = +document.getElementById('side').value; // Pobranie wartości boku kwadratu
+        document.getElementById('square-result').textContent = side > 0 ? `Pole kwadratu: ${(side * side).toFixed(2)}` : "Błędne dane"; 
+        // Wyświetlenie wyniku lub komunikat o błędzie
+    }
+</script>
+
+</body>
+</html>
