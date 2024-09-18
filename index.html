@@ -5,26 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator pola</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        input, button { display: block; margin: 10px 0; width: 100%; padding: 8px; }
-        .result { margin-top: 20px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
 
-<h2>Pole trójkąta (wzór Herona)</h2>
-<input type="number" id="a" placeholder="Bok a">
-<input type="number" id="b" placeholder="Bok b">
-<input type="number" id="c" placeholder="Bok c">
-<button onclick="calculateTriangle()">Oblicz pole trójkąta</button>
+<div class="container">
+    <h2>Pole trójkąta (Heron)</h2>
+    <input type="number" id="a" placeholder="Bok a">
+    <input type="number" id="b" placeholder="Bok b">
+    <input type="number" id="c" placeholder="Bok c">
+    <button onclick="calculateTriangle()">Oblicz pole trójkąta</button>
 
-<h2>Pole kwadratu</h2>
-<input type="number" id="side" placeholder="Bok kwadratu">
-<button onclick="calculateSquare()">Oblicz pole kwadratu</button>
+    <h2>Pole kwadratu</h2>
+    <input type="number" id="side" placeholder="Bok kwadratu">
+    <button onclick="calculateSquare()">Oblicz pole kwadratu</button>
 
-<div class="result">
-    <p id="triangle-result"></p>
-    <p id="square-result"></p>
+    <div class="result">
+        <p id="triangle-result"></p>
+        <p id="square-result"></p>
+    </div>
 </div>
 
 <script>
@@ -34,7 +82,7 @@
         const c = +document.getElementById('c').value;
         const s = (a + b + c) / 2;
         const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-        document.getElementById('triangle-result').textContent = isNaN(area) ? "Błędne dane" : `Pole trójkąta: ${area.toFixed(2)}`;
+        document.getElementById('triangle-result').textContent = isNaN(area) || area <= 0 ? "Błędne dane" : `Pole trójkąta: ${area.toFixed(2)}`;
     }
 
     function calculateSquare() {
