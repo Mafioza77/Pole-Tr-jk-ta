@@ -13,13 +13,14 @@
             align-items: center; /* Wyśrodkowanie kontenera w pionie */
             height: 100vh; /* Wysokość na 100% widoku okna */
             margin: 0; /* Usunięcie marginesów */
+            background-color: rgb(87, 138, 233);
         }
         img{
             float:center;
         }
 
         .container {
-            background-color: white; /* Tło kontenera */
+            background-color: rgb(255, 255, 255); /* Tło kontenera */
             padding: 20px; /* Odstęp wewnętrzny */
             border-radius: 10px; /* Zaokrąglone rogi */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Cień pod kontenerem */
@@ -29,12 +30,12 @@
         }
 
         h2 {
-            color: #333; /* Kolor tekstu nagłówka */
+            color: #000000; /* Kolor tekstu nagłówka */
             margin-bottom: 20px; /* Odstęp poniżej nagłówka */
         }
 
         input {
-            
+            width: 95%;
             padding: 10px; /* Wewnętrzny margines */
             margin: 10px 0; /* Odstępy między inputami */
             border: 1px solid #ccc; /* Obramowanie */
@@ -45,7 +46,7 @@
         button {
             width: 100%; /* Szerokość przycisku */
             padding: 10px; /* Wewnętrzny margines */
-            background-color: #28a745; /* Kolor tła przycisku */
+            background-color: #2950d1; /* Kolor tła przycisku */
             color: white; /* Kolor tekstu */
             border: none; /* Brak obramowania */
             border-radius: 5px; /* Zaokrąglone rogi */
@@ -68,7 +69,7 @@
         img {
             display: block; /* Wyświetlanie obrazu jako blok */
             margin: 10px auto; /* Wyśrodkowanie obrazów */
-            max-width: 100px; /* Maksymalna szerokość obrazów */
+            max-width: 150px; /* Maksymalna szerokość obrazów */
         }
     </style>
 </head>
@@ -81,6 +82,10 @@
     <input type="number" id="c" placeholder="Bok c"> <!-- Pole input dla boku c -->
     <button onclick="calculateTriangle()">Oblicz pole trójkąta</button> <!-- Przycisk obliczający pole trójkąta -->
 
+    <div class="result">
+        <p id="triangle-result"></p> <!-- Wynik dla pola trójkąta -->
+    </div>
+
     <img src="tr.png" alt="Obraz trójkąta"> <!-- Obrazek trójkąta -->
 
     <h2>Pole prostokąta</h2> <!-- Nagłówek dla pola prostokąta -->
@@ -88,12 +93,13 @@
     <input type="number" id="width" placeholder="Szerokość prostokąta"> <!-- Pole input dla szerokości prostokąta -->
     <button onclick="calculateRectangle()">Oblicz pole prostokąta</button> <!-- Przycisk obliczający pole prostokąta -->
 
-    <img src="pr.png" alt="Obraz prostokąta"> <!-- Obrazek prostokąta -->
-
     <div class="result">
-        <p id="triangle-result"></p> <!-- Wynik dla pola trójkąta -->
         <p id="rectangle-result"></p> <!-- Wynik dla pola prostokąta -->
     </div>
+
+    <img src="pr.png" alt="Obraz prostokąta"> <!-- Obrazek prostokąta -->
+
+    
 </div>
 
 <script>
