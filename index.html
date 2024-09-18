@@ -5,101 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator pola</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        .container {
-            width: 300px;
-            margin: auto;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin: 10px 0;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f2f2f2;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input, button { display: block; margin: 10px 0; width: 100%; padding: 8px; }
+        .result { margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Oblicz pole trójkąta (wzór Herona)</h2>
-    <label for="a">Podaj długość boku a:</label>
-    <input type="number" id="a" placeholder="Długość boku a">
+<h2>Pole trójkąta (wzór Herona)</h2>
+<input type="number" id="a" placeholder="Bok a">
+<input type="number" id="b" placeholder="Bok b">
+<input type="number" id="c" placeholder="Bok c">
+<button onclick="calculateTriangle()">Oblicz pole trójkąta</button>
 
-    <label for="b">Podaj długość boku b:</label>
-    <input type="number" id="b" placeholder="Długość boku b">
+<h2>Pole kwadratu</h2>
+<input type="number" id="side" placeholder="Bok kwadratu">
+<button onclick="calculateSquare()">Oblicz pole kwadratu</button>
 
-    <label for="c">Podaj długość boku c:</label>
-    <input type="number" id="c" placeholder="Długość boku c">
-
-    <button onclick="calculateTriangle()">Oblicz pole trójkąta</button>
-
-    <h2>Oblicz pole kwadratu</h2>
-    <label for="side">Podaj długość boku kwadratu:</label>
-    <input type="number" id="side" placeholder="Długość boku kwadratu">
-
-    <button onclick="calculateSquare()">Oblicz pole kwadratu</button>
-
-    <div class="result">
-        <p id="triangle-result">Pole trójkąta: </p>
-        <p id="square-result">Pole kwadratu: </p>
-    </div>
+<div class="result">
+    <p id="triangle-result"></p>
+    <p id="square-result"></p>
 </div>
 
 <script>
     function calculateTriangle() {
-        const a = parseFloat(document.getElementById('a').value);
-        const b = parseFloat(document.getElementById('b').value);
-        const c = parseFloat(document.getElementById('c').value);
-
-        if (isNaN(a) || isNaN(b) || isNaN(c)) {
-            alert("Proszę wprowadzić poprawne wartości dla wszystkich boków.");
-            return;
-        }
-
-        // Wzór Herona
+        const a = +document.getElementById('a').value;
+        const b = +document.getElementById('b').value;
+        const c = +document.getElementById('c').value;
         const s = (a + b + c) / 2;
         const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-
-        if (isNaN(area) || area <= 0) {
-            document.getElementById('triangle-result').innerHTML = "Pole trójkąta: Błędne dane, trójkąt nie może istnieć.";
-        } else {
-            document.getElementById('triangle-result').innerHTML = "Pole trójkąta: " + area.toFixed(2) + " jednostek kwadratowych";
-        }
+        document.getElementById('triangle-result').textContent = isNaN(area) ? "Błędne dane" : `Pole trójkąta: ${area.toFixed(2)}`;
     }
 
     function calculateSquare() {
-        const side = parseFloat(document.getElementById('side').value);
-
-        if (isNaN(side) || side <= 0) {
-            alert("Proszę wprowadzić poprawną długość boku kwadratu.");
-            return;
-        }
-
-        const area = side * side;
-        document.getElementById('square-result').innerHTML = "Pole kwadratu: " + area.toFixed(2) + " jednostek kwadratowych";
+        const side = +document.getElementById('side').value;
+        document.getElementById('square-result').textContent = side > 0 ? `Pole kwadratu: ${(side * side).toFixed(2)}` : "Błędne dane";
     }
 </script>
 
