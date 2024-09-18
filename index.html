@@ -80,15 +80,16 @@
 
     <img src="tr.png" alt="Obraz trójkąta"> <!-- Obrazek trójkąta -->
 
-    <h2>Pole kwadratu</h2> <!-- Nagłówek dla pola kwadratu -->
-    <input type="number" id="side" placeholder="Bok kwadratu"> <!-- Pole input dla boku kwadratu -->
-    <button onclick="calculateSquare()">Oblicz pole kwadratu</button> <!-- Przycisk obliczający pole kwadratu -->
+    <h2>Pole prostokąta</h2> <!-- Nagłówek dla pola prostokąta -->
+    <input type="number" id="length" placeholder="Długość prostokąta"> <!-- Pole input dla długości prostokąta -->
+    <input type="number" id="width" placeholder="Szerokość prostokąta"> <!-- Pole input dla szerokości prostokąta -->
+    <button onclick="calculateRectangle()">Oblicz pole prostokąta</button> <!-- Przycisk obliczający pole prostokąta -->
 
-    <img src="pr.png" alt="Obraz kwadratu"> <!-- Obrazek kwadratu -->
+    <img src="pr.png" alt="Obraz prostokąta"> <!-- Obrazek prostokąta -->
 
     <div class="result">
         <p id="triangle-result"></p> <!-- Wynik dla pola trójkąta -->
-        <p id="square-result"></p> <!-- Wynik dla pola kwadratu -->
+        <p id="rectangle-result"></p> <!-- Wynik dla pola prostokąta -->
     </div>
 </div>
 
@@ -103,9 +104,11 @@
         // Wyświetlenie wyniku lub komunikat o błędzie
     }
 
-    function calculateSquare() {
-        const side = +document.getElementById('side').value; // Pobranie wartości boku kwadratu
-        document.getElementById('square-result').textContent = side > 0 ? `Pole kwadratu: ${(side * side).toFixed(2)}` : "Błędne dane"; 
+    function calculateRectangle() {
+        const length = +document.getElementById('length').value; // Pobranie wartości długości prostokąta
+        const width = +document.getElementById('width').value; // Pobranie wartości szerokości prostokąta
+        const area = length * width; // Obliczenie pola prostokąta
+        document.getElementById('rectangle-result').textContent = length > 0 && width > 0 ? `Pole prostokąta: ${area.toFixed(2)}` : "Błędne dane"; 
         // Wyświetlenie wyniku lub komunikat o błędzie
     }
 </script>
