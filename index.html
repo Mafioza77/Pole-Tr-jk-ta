@@ -7,84 +7,101 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 20px;
-            background-color: #f4f4f4;
+            margin: 20px;
         }
-        input, button {
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
+
+        .container {
+            width: 300px;
+            margin: auto;
         }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
         button {
-            background-color: hotpink;
+            padding: 10px;
+            background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
+            width: 100%;
         }
+
         button:hover {
-            background-color: deeppink;
+            background-color: #45a049;
         }
+
         .result {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-        .calculator {
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
-        }
-        .figure {
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-            width: 80%;
-            max-width: 600px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
 
-    <h2>Kalkulator pola trójkąta</h2>
-    <div class="calculator">
-        <input type="number" id="a" placeholder="Bok a" min="0" step="0.01">
-        <input type="number" id="b" placeholder="Bok b" min="0" step="0.01">
-        <input type="number" id="c" placeholder="Bok c" min="0" step="0.01">
-        <br>
-        <button onclick="obliczPoleTrojkata()">Oblicz pole trójkąta</button>
-        <div class="result" id="wynikTrojkat"></div>
-    </div>
+<div class="container">
+    <h2>Oblicz pole trójkąta (wzór Herona)</h2>
+    <label for="a">Podaj długość boku a:</label>
+    <input type="number" id="a" placeholder="Długość boku a">
 
-    <!-- Grafika trójkąta -->
-    <div class="figure">
-        <svg width="200" height="150">
-            <polygon points="100,10 10,140 190,140" style="fill:orange;stroke:purple;stroke-width:3"></polygon>
-        </svg>
-    </div>
+    <label for="b">Podaj długość boku b:</label>
+    <input type="number" id="b" placeholder="Długość boku b">
 
-    <h2>Kalkulator pola prostokąta</h2>
-    <div class="calculator">
-        <input type="number" id="dlugosc" placeholder="Długość" min="0" step="0.01">
-        <input type="number" id="szerokosc" placeholder="Szerokość" min="0" step="0.01">
-        <br>
-        <button onclick="obliczPoleProstokata()">Oblicz pole prostokąta</button>
-        <div class="result" id="wynikProstokat"></div>
-<!-- Grafika prostokąta -->
-<div class="figure">
-    <svg width="300" height="150">
-        <rect width="300" height="150" style="fill:orange;stroke:purple;stroke-width:3"></rect>
-    </svg>
+    <label for="c">Podaj długość boku c:</label>
+    <input type="number" id="c" placeholder="Długość boku c">
+
+    <button onclick="calculateTriangle()">Oblicz pole trójkąta</button>
+
+    <h2>Oblicz pole kwadratu</h2>
+    <label for="side">Podaj długość boku kwadratu:</label>
+    <input type="number" id="side" placeholder="Długość boku kwadratu">
+
+    <button onclick="calculateSquare()">Oblicz pole kwadratu</button>
+
+    <div class="result">
+        <p id="triangle-result">Pole trójkąta: </p>
+        <p id="square-result">Pole kwadratu: </p>
+    </div>
 </div>
-    </div>
 
-    <!-- Grafika prostoką
+<script>
+    function calculateTriangle() {
+        const a = parseFloat(document.getElementById('a').value);
+        const b = parseFloat(document.getElementById('b').value);
+        const c = parseFloat(document.getElementById('c').value);
+
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            alert("Proszę wprowadzić poprawne wartości dla wszystkich boków.");
+            return;
+        }
+
+        // Wzór Herona
+        const s = (a + b + c) / 2;
+        const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+
+        if (isNaN(area) || area <= 0) {
+            document.getElementById('triangle-result').innerHTML = "Pole trójkąta: Błędne dane, trójkąt nie może istnieć.";
+        } else {
+            document.getElementById('triangle-result').innerHTML = "Pole trójkąta: " + area.toFixed(2) + " jednostek kwadratowych";
+        }
+    }
+
+    function calculateSquare() {
+        const side = parseFloat(document.getElementById('side').value);
+
+        if (isNaN(side) || side <= 0) {
+            alert("Proszę wprowadzić poprawną długość boku kwadratu.");
+            return;
+        }
+
+        const area = side * side;
+        document.getElementById('square-result').innerHTML = "Pole kwadratu: " + area.toFixed(2) + " jednostek kwadratowych";
+    }
+</script>
+
+</body>
+</html>
